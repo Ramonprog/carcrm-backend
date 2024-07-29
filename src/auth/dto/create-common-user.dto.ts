@@ -1,6 +1,6 @@
 // dto/create-user.dto.ts
 
-export class CreateUserDto {
+export class CreateCommonUserDto {
   name: string
   email: string
   password: string
