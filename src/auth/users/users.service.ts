@@ -44,4 +44,16 @@ export class UsersService {
       },
     })
   }
+
+  findOne(idOrEmail: number | string) {
+    return this.prismaService.user.findFirst({
+      where: {
+        OR: [
+          typeof idOrEmail === 'number'
+            ? { id: idOrEmail }
+            : { email: idOrEmail },
+        ],
+      },
+    })
+  }
 }

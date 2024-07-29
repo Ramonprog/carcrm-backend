@@ -5,8 +5,8 @@ POST http://localhost:3001/partners/users
 Content-Type: application/json
 
 {
-  "name": "partner04",
-  "email": "partiner04@gmail.com",
+  "name": "partner05",
+  "email": "partiner05@gmail.com",
   "password": "123456"
 }
 
@@ -15,7 +15,16 @@ POST http://localhost:3001/users
 Content-Type: application/json
 
 {
-  "name": "common01",
-  "email": "common01@gmail.com",
+  "name": "common03",
+  "email": "common03@gmail.com",
+  "password": "123456"
+}
+
+### login
+POST http://localhost:3001/auth/login
+Content-Type: application/json
+
+{
+  "email": "common03@gmail.com",
   "password": "123456"
 }
