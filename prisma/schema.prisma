@@ -13,6 +13,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Tenant {
+  id              Int      @id @default(autoincrement())
+  name            String
+  email           String   @unique
+  phone           String?
+  address         String?
+  description     String?
+  isActive        Boolean  @default(true)
+  subscriptionPlan String?
+  billingInformation Json?
+  logoUrl         String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  Users           TenantUser[]
+
+  @@map("tenants")
+}
+
 model User {
   id        Int      @id @default(autoincrement())
   name      String
@@ -21,33 +40,20 @@ model User {
   roles     Json
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  
+  Tenants   TenantUser[] 
 
   @@map("users")
-  PartnerUser PartnerUser[]
 }
 
-model Partner {
+model TenantUser {
   id        Int      @id @default(autoincrement())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  PartnerUser PartnerUser[]
-  
-  @@map("partners")
-}
-
-
-model PartnerUser {
-  id        Int      @id @default(autoincrement())
-  partnerId Int
+  tenantId  Int
   userId    Int
-  Partner Partner @relation(fields: [partnerId], references: [id])
-  User    User     @relation(fields: [userId], references: [id])
-
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([userId])
-
-  @@map("partner_users")
+  
+  Tenant    Tenant @relation(fields: [tenantId], references: [id])
+  User      User   @relation(fields: [userId], references: [id])
+  
+  @@map("tenant_users")
 }
