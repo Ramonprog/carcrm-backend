@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UseGuards } from '@nestjs/common'
+import { Controller, Post, Body, UseGuards, Get, Query } from '@nestjs/common'
 import { TenantService } from './tenant.service'
 import { CreateTenantDto } from './dto/create-tenant.dto'
 import { UpdateTenantDto } from './dto/update-tenant.dto'
@@ -11,5 +11,12 @@ export class TenantController {
   @Post()
   create(@Body() createTenantDto: CreateTenantDto) {
     return this.tenantService.create(createTenantDto)
+  }
+
+  @UseGuards(AuthGuard)
+  @Get('users')
+  async getUsers(@Query('tenantId') tenantId: number) {
+    const parseTenantId = Number(tenantId)
+    return this.tenantService.findAllUserByTenantId(parseTenantId)
   }
 }

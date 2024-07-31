@@ -50,3 +50,8 @@ Content-Type: application/json
   "password": "123456",
   "name": "tenant02"
 }
+
+### tenant users
+GET http://localhost:3001/tenant/users?tenantId=2 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InRlbmFudDAyIiwiZW1haWwiOiJ0ZW5hbnQwMkBnbWFpbC5jb20iLCJwaG9uZSI6bnVsbCwiYWRkcmVzcyI6bnVsbCwiZGVzY3JpcHRpb24iOm51bGwsImlzQWN0aXZlIjpmYWxzZSwic3Vic2NyaXB0aW9uUGxhbiI6bnVsbCwiYmlsbGluZ0luZm9ybWF0aW9uIjpudWxsLCJsb2dvVXJsIjpudWxsLCJjcmVhdGVkQXQiOiIyMDI0LTA3LTMxVDIyOjUwOjA5LjM0NloiLCJ1cGRhdGVkQXQiOiIyMDI0LTA3LTMxVDIyOjUwOjA5LjM0NloiLCJpYXQiOjE3MjI0Njc1NzQsImV4cCI6MTcyMjU1Mzk3NH0.c9AkH_ewZmsNc1q160ddlojgG5NBttBqBgtrIq9edxM
