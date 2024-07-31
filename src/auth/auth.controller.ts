@@ -10,4 +10,9 @@ export class AuthController {
   login(@Body() dataLoginDto: LoginDto) {
     return this.authService.login(dataLoginDto)
   }
+
+  @Post('tenant/login')
+  tenantLogin(@Body() dataLoginDto: LoginDto) {
+    return this.authService.tenantLogin(dataLoginDto)
+  }
 }

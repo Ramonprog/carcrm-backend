@@ -21,7 +21,18 @@ Content-Type: application/json
   "tenantId": 2
 }
 
-### login
+### login tenant
+POST http://localhost:3001/auth/tenant/login
+Content-Type: application/json
+
+{
+  "email": "tenant02@gmail.com",
+  "password": "123456"
+}
+
+
+### login common user
+
 POST http://localhost:3001/auth/login
 Content-Type: application/json
 

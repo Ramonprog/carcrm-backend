@@ -18,4 +18,16 @@ export class TenantService {
   generateHash(password: string) {
     return bcrypt.hashSync(password, 10)
   }
+
+  findOne(idOrEmail: number | string) {
+    return this.prismaService.tenant.findFirst({
+      where: {
+        OR: [
+          typeof idOrEmail === 'number'
+            ? { id: idOrEmail }
+            : { email: idOrEmail },
+        ],
+      },
+    })
+  }
 }
