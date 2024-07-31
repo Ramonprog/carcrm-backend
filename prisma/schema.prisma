@@ -27,7 +27,7 @@ model Tenant {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
-  Users           TenantUser[]
+  Users           User[]
 
   @@map("tenants")
 }
@@ -38,22 +38,11 @@ model User {
   email     String   @unique
   password  String
   roles     Json
+  tenantId  Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   
-  Tenants   TenantUser[] 
+  Tenant   Tenant @relation(fields: [tenantId], references: [id])
 
   @@map("users")
-}
-
-model TenantUser {
-  id        Int      @id @default(autoincrement())
-  tenantId  Int
-  userId    Int
-  createdAt DateTime @default(now())
-  
-  Tenant    Tenant @relation(fields: [tenantId], references: [id])
-  User      User   @relation(fields: [userId], references: [id])
-  
-  @@map("tenant_users")
 }
