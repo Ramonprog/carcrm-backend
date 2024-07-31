@@ -1,26 +1,21 @@
-import { Injectable } from '@nestjs/common';
-import { CreateTenantDto } from './dto/create-tenant.dto';
-import { UpdateTenantDto } from './dto/update-tenant.dto';
-
+import { Injectable } from '@nestjs/common'
+import { CreateTenantDto } from './dto/create-tenant.dto'
+import { PrismaService } from 'src/prisma/prisma.service'
+import * as bcrypt from 'bcrypt'
 @Injectable()
 export class TenantService {
+  constructor(private prismaService: PrismaService) {}
+
   create(createTenantDto: CreateTenantDto) {
-    return 'This action adds a new tenant';
+    return this.prismaService.tenant.create({
+      data: {
+        ...createTenantDto,
+        password: this.generateHash(createTenantDto.password),
+      },
+    })
   }
 
-  findAll() {
-    return `This action returns all tenant`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} tenant`;
-  }
-
-  update(id: number, updateTenantDto: UpdateTenantDto) {
-    return `This action updates a #${id} tenant`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} tenant`;
+  generateHash(password: string) {
+    return bcrypt.hashSync(password, 10)
   }
 }

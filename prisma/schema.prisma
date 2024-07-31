@@ -20,13 +20,13 @@ model Tenant {
   phone           String?
   address         String?
   description     String?
-  isActive        Boolean  @default(true)
+  isActive        Boolean  @default(false)
   subscriptionPlan String?
   billingInformation Json?
   logoUrl         String?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
-
+  password  String
   Users           User[]
 
   @@map("tenants")

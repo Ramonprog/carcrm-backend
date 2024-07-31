@@ -15,9 +15,10 @@ POST http://localhost:3001/users
 Content-Type: application/json
 
 {
-  "name": "common03",
-  "email": "common03@gmail.com",
-  "password": "123456"
+  "name": "common01",
+  "email": "common01@gmail.com",
+  "password": "123456",
+  "tenantId": 2
 }
 
 ### login
@@ -27,4 +28,14 @@ Content-Type: application/json
 {
   "email": "common03@gmail.com",
   "password": "123456"
+}
+
+### tenant
+POST http://localhost:3001/tenant
+Content-Type: application/json
+
+{
+  "email": "tenant02@gmail.com",
+  "password": "123456",
+  "name": "tenant02"
 }
