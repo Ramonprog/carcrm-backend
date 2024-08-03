@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,7 +8,7 @@ datasource db {
 }
 
 model Tenant {
-  id                Int          @id @default(autoincrement())
+  id                Int                 @id @default(autoincrement())
   name              String
   domain            String?
   subdomain         String?
@@ -23,25 +17,25 @@ model Tenant {
   facebookPixel     String?
   googleAnalytics   String?
   whatsappNumber    String?
-  email             String       @unique
+  email             String              @unique
   title             String?
   siteKeyWord       String?
   siteDescription   String?
   subscriptionPlanId Int?
-  subscriptionPlan  SubscriptionPlan? @relation(fields: [subscriptionPlanId], references: [id])
-  isActive          Boolean      @default(true)
+  subscriptionPlan  SubscriptionPlan?  @relation(fields: [subscriptionPlanId], references: [id])
+  isActive          Boolean             @default(true)
   billingInformation Json?
   nextExpirationDate DateTime?
-  disabledAccount   DateTime?   // soft delete, not actually deleted
-  deletedAt         DateTime?   // soft delete, not actually deleted
+  disabledAccount   DateTime?          // soft delete, not actually deleted
+  deletedAt         DateTime?          // soft delete, not actually deleted
   logoUrl           String?
   password          String
   Users             User[]
   primaryColor      String?
   secondaryColor    String?
-  vehicles          Vehicle[]   
-  createdAt         DateTime    @default(now())
-  updatedAt         DateTime    @updatedAt
+  Vehicles          Vehicle[]   
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
 
   @@map("tenants")
 }
@@ -65,7 +59,7 @@ model SubscriptionPlan {
   id        Int      @id @default(autoincrement())
   name      String
   description String?
-  tenants     Tenant[] 
+  Tenants     Tenant[] 
 
   @@map("subscription_plans")
 }
@@ -73,23 +67,23 @@ model SubscriptionPlan {
 model Vehicle { 
   id          Int      @id @default(autoincrement())
 
-  vehicleType String?
-  vehicleBrand String?
-  vehicleModel String?
-  vehicleVersion String?
+  vehicleTypeId Int?
+  vehicleBrandId Int?
+  vehicleModelId Int?
+  vehicleVersionId Int?
   vehicleRegistration DateTime?
-  vehicleGearBox String?
-  vehicleFuel String?
-  vehicleSteering String?
-  vehicleMotorPower String?
-  vehicleDoors String?
-  veicleColor String?
-  vehicleCubiccms String?
-  vehicleMileage String?
+  vehicleGearBoxId Int?
+  vehicleFuelId Int?
+  vehicleSteeringId Int?
+  vehicleMotorPowerId Int?
+  vehicleDoorsId Int?
+  vehicleColorId Int?
+  vehicleCubiccmsId Int?
+  vehicleMileageId Int?
   vehicleOwner String?
-  vehicleFeatures Json?
-  motorCycleFeatures Json?
-  vehicleFinancial Json?
+  vehicleFeaturesId Int?
+  motorCycleFeaturesId Int?
+  vehicleFinancialId Int?
   vehiclePrice Int?
   vehicleTitle String?
   title String?
@@ -105,6 +99,187 @@ model Vehicle {
 
   tenantId    Int     
   Tenant      Tenant  @relation(fields: [tenantId], references: [id])
+  VehicleBrand VehicleBrand? @relation(fields: [vehicleBrandId], references: [id])
+  VehicleModel VehicleModel? @relation(fields: [vehicleModelId], references: [id])
+  VehicleVersion VehicleVersion? @relation(fields: [vehicleVersionId], references: [id])
+  VehicleGearBox VehicleGearBox? @relation(fields: [vehicleGearBoxId], references: [id])
+  VehicleFuel VehicleFuel? @relation(fields: [vehicleFuelId], references: [id])
+  VehicleSteering VehicleSteering? @relation(fields: [vehicleSteeringId], references: [id])
+  VehicleMotorPower VehicleMotorPower? @relation(fields: [vehicleMotorPowerId], references: [id])
+  VehicleDoors VehicleDoors? @relation(fields: [vehicleDoorsId], references: [id])
+  VehicleColor VehicleColor? @relation(fields: [vehicleColorId], references: [id])
+  VehicleCubiccms VehicleCubiccms? @relation(fields: [vehicleCubiccmsId], references: [id])
+  VehicleMileage VehicleMileage? @relation(fields: [vehicleMileageId], references: [id])
+  VehicleFeatures VehicleFeatures? @relation(fields: [vehicleFeaturesId], references: [id])
+  MotorCycleFeatures MotorCycleFeatures? @relation(fields: [motorCycleFeaturesId], references: [id])
+  VehicleFinancial VehicleFinancial? @relation(fields: [vehicleFinancialId], references: [id])
 
   @@map("vehicles") 
+}
+
+model VehicleBrand {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  VehicleModels VehicleModel[]
+  VehicleVersions VehicleVersion[]
+  
+  @@map("vehicle_brands")
+  Vehicle Vehicle[]
+}
+
+model VehicleModel {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  brandId   Int?
+  Brand     VehicleBrand? @relation(fields: [brandId], references: [id])
+  VehicleVersions VehicleVersion[]
+  
+  @@map("vehicle_models")
+  Vehicle Vehicle[]
+}
+
+model VehicleVersion {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  brandId   Int?
+  modelId   Int?
+  Brand     VehicleBrand? @relation(fields: [brandId], references: [id])
+  Model     VehicleModel? @relation(fields: [modelId], references: [id])
+  
+  @@map("vehicle_versions")
+  Vehicle Vehicle[]
+}
+
+model VehicleRegistrationDate {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("vehicle_registration_date")
+}
+
+model VehicleGearBox {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("vehicle_gear_box")
+  Vehicle Vehicle[]
+}
+
+model VehicleFuel {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("vehicle_fuel")
+  Vehicle Vehicle[]
+}
+
+model VehicleSteering {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("vehicle_steering")
+  Vehicle Vehicle[]
+}
+
+model VehicleMotorPower {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("vehicle_motor_power")
+  Vehicle Vehicle[]
+}
+
+model VehicleDoors {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("vehicle_doors")
+  Vehicle Vehicle[]
+}
+
+model VehicleColor {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("vehicle_color")
+  Vehicle Vehicle[]
+}
+
+model VehicleCubiccms {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("vehicle_cubiccms")
+  Vehicle Vehicle[]
+}
+
+model VehicleMileage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("vehicle_mileage")
+  Vehicle Vehicle[]
+}
+
+model VehicleFeatures {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("vehicle_features")
+  Vehicle Vehicle[]
+}
+
+model MotorCycleFeatures {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("motor_cycle_features")
+  Vehicle Vehicle[]
+}
+
+model VehicleFinancial {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("vehicle_financial")
+  Vehicle Vehicle[]
+}
+
+model VehicleType {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("vehicle_type")
+}
+
+model VehiclePhotos {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("vehicle_photos")
+}
+
+model VehicleExchange {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Int?
+  
+  @@map("vehicle_exchange")
 }
