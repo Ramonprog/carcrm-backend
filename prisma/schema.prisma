@@ -14,20 +14,34 @@ datasource db {
 }
 
 model Tenant {
-  id              Int      @id @default(autoincrement())
-  name            String
-  email           String   @unique
-  phone           String?
-  address         String?
-  description     String?
-  isActive        Boolean  @default(false)
-  subscriptionPlan String?
+  id                Int          @id @default(autoincrement())
+  name              String
+  domain            String?
+  subdomain         String?
+  socialMedia       Json?
+  facebookPageId    String?
+  facebookPixel     String?
+  googleAnalytics   String?
+  whatsappNumber    String?
+  email             String       @unique
+  title             String?
+  siteKeyWord       String?
+  siteDescription   String?
+  subscriptionPlanId Int?
+  subscriptionPlan  SubscriptionPlan? @relation(fields: [subscriptionPlanId], references: [id])
+  isActive          Boolean      @default(true)
   billingInformation Json?
-  logoUrl         String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  password  String
-  Users           User[]
+  nextExpirationDate DateTime?
+  disabledAccount   DateTime?   // soft delete, not actually deleted
+  deletedAt         DateTime?   // soft delete, not actually deleted
+  logoUrl           String?
+  password          String
+  Users             User[]
+  primaryColor      String?
+  secondaryColor    String?
+  vehicles          Vehicle[]   
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
 
   @@map("tenants")
 }
@@ -45,4 +59,52 @@ model User {
   Tenant   Tenant @relation(fields: [tenantId], references: [id])
 
   @@map("users")
+}
+
+model SubscriptionPlan {
+  id        Int      @id @default(autoincrement())
+  name      String
+  description String?
+  tenants     Tenant[] 
+
+  @@map("subscription_plans")
+}
+
+model Vehicle { 
+  id          Int      @id @default(autoincrement())
+
+  vehicleType String?
+  vehicleBrand String?
+  vehicleModel String?
+  vehicleVersion String?
+  vehicleRegistration DateTime?
+  vehicleGearBox String?
+  vehicleFuel String?
+  vehicleSteering String?
+  vehicleMotorPower String?
+  vehicleDoors String?
+  veicleColor String?
+  vehicleCubiccms String?
+  vehicleMileage String?
+  vehicleOwner String?
+  vehicleFeatures Json?
+  motorCycleFeatures Json?
+  vehicleFinancial Json?
+  vehiclePrice Int?
+  vehicleTitle String?
+  title String?
+  description String?
+  status String? 
+  tagId Int?
+
+  zipCode     String?
+  city        String?
+  cityUrl     String?
+  country     String?
+  countryUrl  String?
+
+  tenantId    Int     
+  Tenant      Tenant  @relation(fields: [tenantId], references: [id])
+
+  @@map("vehicles") 
 }

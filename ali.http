@@ -1,12 +1,12 @@
 GET http://localhost:3001/users
 
-### partner user
-POST http://localhost:3001/partners/users
+### tenant user
+POST http://localhost:3001/tenant
 Content-Type: application/json
 
 {
-  "name": "partner05",
-  "email": "partiner05@gmail.com",
+  "name": "partner04",
+  "email": "partiner04@gmail.com",
   "password": "123456"
 }
 

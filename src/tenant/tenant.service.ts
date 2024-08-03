@@ -12,6 +12,11 @@ export class TenantService {
         ...createTenantDto,
         password: this.generateHash(createTenantDto.password),
       },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      },
     })
   }
 
