@@ -15,8 +15,12 @@ export class VehiclesService {
     })
   }
 
-  findAll() {
-    return `This action returns all vehicles`
+  findAll(tenantId: number) {
+    return this.prismaService.vehicle.findMany({
+      where: {
+        tenant_id: tenantId,
+      },
+    })
   }
 
   findOne(id: number) {

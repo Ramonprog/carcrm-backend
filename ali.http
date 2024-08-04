@@ -5,8 +5,8 @@ POST http://localhost:3001/tenant
 Content-Type: application/json
 
 {
-  "name": "partner04",
-  "email": "partiner04@gmail.com",
+  "name": "tenant03",
+  "email": "tenant03@gmail.com",
   "password": "123456"
 }
 
@@ -26,7 +26,7 @@ POST http://localhost:3001/auth/tenant/login
 Content-Type: application/json
 
 {
-  "email": "tenant02@gmail.com",
+  "email": "tenant03@gmail.com",
   "password": "123456"
 }
 
@@ -71,6 +71,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6I
   "city": "city01",
   "vehicle_brand_id":1
 }
+
+### vehicles findAll
+GET http://localhost:3001/vehicles
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InRlbmFudDAzIiwiY3JlYXRlZF9hdCI6IjIwMjQtMDgtMDRUMjE6MDI6NDguMDYxWiIsInVwZGF0ZWRfYXQiOiIyMDI0LTA4LTA0VDIxOjAyOjQ4LjA2MVoiLCJiaWxsaW5nX2luZm9ybWF0aW9uIjpudWxsLCJlbWFpbCI6InRlbmFudDAzQGdtYWlsLmNvbSIsImlzX2FjdGl2ZSI6dHJ1ZSwibG9nb191cmwiOm51bGwsImRlbGV0ZWRfYXQiOm51bGwsImRpc2FibGVkX2FjY291bnQiOm51bGwsImRvbWFpbiI6bnVsbCwiZmFjZWJvb2tfcGFnZV9pZCI6bnVsbCwiZmFjZWJvb2tfcGl4ZWwiOm51bGwsImdvb2dsZV9hbmFseXRpY3MiOm51bGwsIm5leHRfZXhwaXJhdGlvbl9kYXRlIjpudWxsLCJzaXRlX2Rlc2NyaXB0aW9uIjpudWxsLCJzaXRlX2tleV93b3JkIjpudWxsLCJzb2NpYWxfbWVkaWEiOm51bGwsInN1YmRvbWFpbiI6bnVsbCwic3Vic2NyaXB0aW9uX3BsYW5faWQiOm51bGwsInRpdGxlIjpudWxsLCJ3aGF0c2FwcF9udW1iZXIiOm51bGwsInByaW1hcnlfY29sb3IiOm51bGwsInNlY29uZGFyeV9jb2xvciI6bnVsbCwiaWF0IjoxNzIyODA1Mzg3LCJleHAiOjE3MjI4OTE3ODd9.Cs4nKkY_HlhisMih-TJA8yB6RbI9Lz_QIrTEt-VjBPs
+
 
 ### vehicles brand
 GET  http://localhost:3001/brand

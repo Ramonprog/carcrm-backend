@@ -26,11 +26,15 @@ export class VehiclesController {
     return this.vehiclesService.create(createVehicleDto, tenant.id)
   }
 
+  @UseGuards(AuthGuard)
   @Get()
-  findAll() {
-    return this.vehiclesService.findAll()
+  findAll(@Req() request: Request) {
+    const tenant = request['tenant']
+
+    return this.vehiclesService.findAll(tenant.id)
   }
 
+  @UseGuards(AuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.vehiclesService.findOne(+id)
