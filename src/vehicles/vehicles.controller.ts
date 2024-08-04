@@ -21,7 +21,7 @@ export class VehiclesController {
   @UseGuards(AuthGuard)
   @Post()
   create(@Req() request: Request, @Body() createVehicleDto: CreateVehicleDto) {
-    const tenant = request['user']
+    const tenant = request['tenant']
 
     return this.vehiclesService.create(createVehicleDto, tenant.id)
   }
