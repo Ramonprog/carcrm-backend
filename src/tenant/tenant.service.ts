@@ -39,7 +39,7 @@ export class TenantService {
   findAllUserByTenantId(tenantId: number) {
     return this.prismaService.user.findMany({
       where: {
-        tenantId,
+        tenant_id: tenantId,
       },
     })
   }

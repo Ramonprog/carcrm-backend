@@ -4,5 +4,5 @@ export class CreateCommonUserDto {
   name: string
   email: string
   password: string
-  tenantId: number
+  tenant_id: number
 }
