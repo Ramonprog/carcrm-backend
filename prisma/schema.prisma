@@ -241,7 +241,7 @@ model VehicleType {
   label String
   value Int?
 
-  @@map("vehicle_type")
+  @@map("vehicle_types")
 }
 
 model VehiclePhotos {

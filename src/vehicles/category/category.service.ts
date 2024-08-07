@@ -1,26 +1,28 @@
-import { Injectable } from '@nestjs/common';
-import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
+import { Injectable } from '@nestjs/common'
+import { CreateCategoryDto } from './dto/create-category.dto'
+import { UpdateCategoryDto } from './dto/update-category.dto'
+import { PrismaService } from 'src/prisma/prisma.service'
 
 @Injectable()
 export class CategoryService {
+  constructor(private readonly prismaService: PrismaService) {}
   create(createCategoryDto: CreateCategoryDto) {
-    return 'This action adds a new category';
+    return 'This action adds a new category'
   }
 
   findAll() {
-    return `This action returns all category`;
+    return this.prismaService.vehicleType.findMany()
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} category`;
+    return `This action returns a #${id} category`
   }
 
   update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category`;
+    return `This action updates a #${id} category`
   }
 
   remove(id: number) {
-    return `This action removes a #${id} category`;
+    return `This action removes a #${id} category`
   }
 }
