@@ -15,8 +15,12 @@ export class VersionsService {
     return this.prismaService.vehicleVersion.findMany()
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} version`
+  findVersionByModelId(id: number) {
+    return this.prismaService.vehicleVersion.findMany({
+      where: {
+        model_id: id,
+      },
+    })
   }
 
   update(id: number, updateVersionDto: UpdateVersionDto) {
