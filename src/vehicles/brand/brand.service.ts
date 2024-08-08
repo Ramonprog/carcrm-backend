@@ -14,8 +14,12 @@ export class BrandService {
     return this.prismaService.vehicleBrand.findMany()
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} brand`
+  findBrandByVehicleType(id: number) {
+    return this.prismaService.vehicleBrand.findMany({
+      where: {
+        vehicle_type_id: id,
+      },
+    })
   }
 
   update(id: number, updateBrandDto: UpdateBrandDto) {
