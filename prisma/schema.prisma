@@ -114,7 +114,7 @@ model VehicleBrand {
   id    Int    @id @default(autoincrement())
   label String
   value Int?
-
+  vehicle_type_id  Int?
   @@map("vehicle_brands")
 }
 
