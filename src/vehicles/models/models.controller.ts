@@ -21,15 +21,17 @@ export class ModelsController {
   create(@Body() createModelDto: CreateModelDto) {
     return this.modelsService.create(createModelDto)
   }
+
   @UseGuards(AuthGuard)
   @Get()
   findAll() {
     return this.modelsService.findAll()
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.modelsService.findOne(+id)
+  @UseGuards(AuthGuard)
+  @Get(':brandId')
+  findModelsByBrandId(@Param('brandId') brandId: string) {
+    return this.modelsService.findModelsByBrandId(+brandId)
   }
 
   @Patch(':id')
