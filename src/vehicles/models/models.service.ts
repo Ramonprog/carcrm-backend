@@ -21,12 +21,4 @@ export class ModelsService {
       },
     })
   }
-
-  update(id: number, updateModelDto: UpdateModelDto) {
-    return `This action updates a #${id} model`
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} model`
-  }
 }

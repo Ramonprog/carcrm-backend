@@ -22,12 +22,4 @@ export class VersionsService {
       },
     })
   }
-
-  update(id: number, updateVersionDto: UpdateVersionDto) {
-    return `This action updates a #${id} version`
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} version`
-  }
 }

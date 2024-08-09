@@ -33,14 +33,4 @@ export class ModelsController {
   findModelsByBrandId(@Param('brandId') brandId: string) {
     return this.modelsService.findModelsByBrandId(+brandId)
   }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateModelDto: UpdateModelDto) {
-    return this.modelsService.update(+id, updateModelDto)
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.modelsService.remove(+id)
-  }
 }

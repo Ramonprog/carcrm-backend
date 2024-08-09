@@ -21,12 +21,4 @@ export class BrandService {
       },
     })
   }
-
-  update(id: number, updateBrandDto: UpdateBrandDto) {
-    return `This action updates a #${id} brand`
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} brand`
-  }
 }
