@@ -6,10 +6,11 @@ import { VersionsModule } from './versions/versions.module';
 import { CategoryModule } from './category/category.module';
 import { ModelsModule } from './models/models.module';
 import { ModelsYearsModule } from './models-years/models-years.module';
+import { ColorsModule } from './colors/colors.module';
 
 @Module({
   controllers: [VehiclesController],
   providers: [VehiclesService],
-  imports: [BrandModule, VersionsModule, CategoryModule, ModelsModule, ModelsYearsModule],
+  imports: [BrandModule, VersionsModule, CategoryModule, ModelsModule, ModelsYearsModule, ColorsModule],
 })
 export class VehiclesModule {}

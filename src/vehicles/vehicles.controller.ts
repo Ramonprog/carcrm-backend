@@ -13,12 +13,14 @@ import { VehiclesService } from './vehicles.service'
 import { CreateVehicleDto } from './dto/create-vehicle.dto'
 import { UpdateVehicleDto } from './dto/update-vehicle.dto'
 import { AuthGuard } from 'src/auth/auth.guard'
+import { ApiBody } from '@nestjs/swagger'
 
 @Controller('vehicles')
 export class VehiclesController {
   constructor(private readonly vehiclesService: VehiclesService) {}
 
   @UseGuards(AuthGuard)
+  @ApiBody({ type: CreateVehicleDto })
   @Post()
   create(@Req() request: Request, @Body() createVehicleDto: CreateVehicleDto) {
     const tenant = request['tenant']
